@@ -42,30 +42,6 @@ Tech Stack
 - Pino Logger
 - dotenv
 
-Project Structure
-
-evora/
-│
-├── index.js              # Application entry point
-├── package.json
-├── .env
-├── session/              # WhatsApp authentication session
-│
-└── src/
-    │
-    ├── evora.js          # Main bot class
-    │
-    ├── commands/         # Bot commands
-    │   └── ping.js
-    │
-    ├── events/           # WhatsApp events
-    │
-    ├── handlers/         # Command and event handlers
-    │
-    ├── lib/              # Core utilities
-    │
-    └── utils/            # Helper functions
-
 Installation
 
 Clone the repository:
