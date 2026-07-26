@@ -1,158 +1,36 @@
-Evora Bot
+# Evora Bot
 
-<p align="center">
-  A modular WhatsApp bot built with Node.js and Baileys.
-</p>About
+A modular WhatsApp bot build with node.js & baileys
 
-Evora is a collaborative WhatsApp bot project built by developers who want to create a scalable and maintainable bot system.
+## License
+This projecr is under [GNU GENERAL PUBLIC LICENSE](LICENSE)
 
-This project focuses on:
+## feature
+- **Modular file structure**: easy to maintain, update the bot
+- **OOP architecture**: Built using clean ES6 classes for maintainability and scalability
 
-- Clean architecture
-- Modular development
-- Modern JavaScript practices
-- Team collaboration workflow
+## tech stack
 
-Features
+<p>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+</p>
 
-Current features:
+## setup
+how to setup and use **Evora bot**
 
-- WhatsApp connection using Baileys
-- ESM (ECMAScript Modules)
-- Modular command system
-- Command handler
-- Logger system
+### clone this repo
 
-Planned features:
+```git clone https://github.com/Xerra-m/evora-bot.git```
 
-- Auto command loader
-- Event handler system
-- Plugin system
-- Permission system
-- Owner system
-- Database integration
-- External API integration
-- AI features
+```cd evora-bot```
 
-Tech Stack
+### install dependency
 
-- Node.js
-- JavaScript (ESM)
-- @whiskeysockets/baileys
-- Pino Logger
-- dotenv
+```npm install```
 
-Installation
-
-Clone the repository:
-
-git clone https://github.com/Xerra-m/evora-bot.git
-
-Move into the project directory:
-
-cd evora
-
-Install dependencies:
-
-npm install
-
-Create environment configuration:
-
-BOT_NAME=Evora
-PREFIX=.
-
-Running
-
-Start the bot:
-
-node index.js
-
-Development mode:
-
-npm run dev
-
-Command Development
-
-Create a command inside:
-
-src/commands/
-
-Example:
-
-export default {
-    name: "ping",
-
-    async execute() {
-        console.log("Pong!");
-    }
-};
-
-Architecture
-
-Evora uses a modular architecture:
-
-WhatsApp
-    |
-    v
-Baileys Client
-    |
-    v
-Event Handler
-    |
-    v
-Command Handler
-    |
-    v
-Command Module
-
-Collaboration Workflow
-
-This project uses Git for team collaboration.
-
-Recommended workflow:
-
-main
- |
- └── dev
-      |
-      ├── feature/core-system
-      |
-      ├── feature/new-command
-      |
-      └── feature/api-integration
-
-Development process:
-
-1. Create a feature branch
-2. Develop your changes
-3. Commit your work
-4. Push the branch
-5. Create a Pull Request
-6. Review and merge into "dev"
-
-Contributors
-
-Project contributors:
-
-- Developer 1 — Core system, architecture, WhatsApp integration
-- Developer 2 — Features, API integration, development support
-
-Security
-
-Do not commit these files:
-
-.env
-session/
-node_modules/
-
-The "session/" folder contains WhatsApp authentication data and must remain private.
-
-Development Status
-
-Evora is currently under active development.
-
-The goal is to build a flexible WhatsApp bot platform with a clean and scalable architecture.
-
-License
-
-This project is for learning, development, and collaboration purposes.
+## dev and maintain by
+- [Xerra Magani](https://github.com/Xerra-m)
+- [Aji](https://github.com/aji373410-cyber)
