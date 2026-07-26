@@ -8,12 +8,14 @@ class Evora {
   }
 
   async loadCommands() {
-    this.command.set(ping.name, ping);
-    command.log("Evora log - Command Loaded!");
+    this.commands.set(ping.name, ping);
+    console.log("Evora log - Command Loaded!");
   }
 
   async start() {
     console.log(`Evora log - ${this.name} v${this.version} starting...`);
+
+    await this.loadCommands();
 
     const command = this.commands.get("ping");
 
