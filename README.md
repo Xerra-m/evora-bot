@@ -33,4 +33,4 @@ how to setup and use **Evora bot**
 
 ## dev and maintain by
 - [Xerra Magani](https://github.com/Xerra-m)
-- [Aji](https://github.com/aji373410-cyber)
+- [Minzy](https://github.com/aji373410-cyber)

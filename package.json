@@ -1,7 +1,7 @@
 {
   "name": "evora-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A modular WhatsApp bot build with node.js & baileys",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,8 +12,8 @@
     "url": "git+https://github.com/Xerra-m/evora-bot.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Xerra Magani & Minzy",
+  "license": "GPL-3.0 license",
   "type": "module",
   "bugs": {
     "url": "https://github.com/Xerra-m/evora-bot/issues"
