@@ -7,6 +7,9 @@ import { Boom } from "@hapi/boom";
 import pino from "pino";
 import qrcode from "qrcode-terminal";
 
+// import handlers
+import MessageHandler from "./handlers/messageHandler.js";
+
 class Evora {
   constructor() {
     this.name = "Evora";
@@ -23,6 +26,14 @@ class Evora {
     this.sock = makeWASocket({
       logger: pino({ level: "silent" }),
       auth: state,
+    });
+
+    // initialize message handler
+    const messageHandler = new MessageHandler(this.sock);
+
+    // handler for message
+    this.sock.ev.on("message.upsert", async (chatUpdate) => {
+      await messageHandler.handleMessage(chatUpdate);
     });
 
     // handler save creds if there are change
@@ -48,3 +59,5 @@ class Evora {
     });
   }
 }
+
+export default Evora;
