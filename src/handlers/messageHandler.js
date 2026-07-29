@@ -64,11 +64,15 @@ class MessageHandler {
       }
 
       // prefix
-      const prefix = ".";
-      if (!body.startsWith(prefix)) return;
+      const prefixes = [".", ",", "!", ";", ":", "@", "$", "e!"];
+
+      // search active prefix
+      const activePrefix = prefixes.find((p) => body.startsWith(p));
+
+      if (!activePrefix) return;
 
       // separate the command name and its arguments
-      const args = body.slice(prefix.length).trim().split(/ +/);
+      const args = body.slice(activePrefix.length).trim().split(/ +/);
       const commandName = args.shift().toLowerCase();
 
       // Check if the command is registered in the Map.
