@@ -8,8 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 class MessageHandler {
-  constructor(sock) {
+  constructor(sock, botInfo = {}) {
     this.sock = sock;
+    this.botInfo = botInfo;
     this.commands = new Map();
     this.loadCommands();
   }
@@ -82,7 +83,14 @@ class MessageHandler {
       console.log(
         `Evora log - ${commandName} di-trigger oleh ${m.key.remoteJid}`,
       );
-      await command.execute({ sock: this.sock, m, args, body, prefix });
+      await command.execute({
+        sock: this.sock,
+        m,
+        args,
+        body,
+        prefix: activePrefix,
+        botInfo: this.botInfo,
+      });
     } catch (err) {
       console.error(`Evora log - Error handling message: ${err}`);
     }
