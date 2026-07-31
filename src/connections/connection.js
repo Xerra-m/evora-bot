@@ -4,11 +4,15 @@ import qrcode from "qrcode-terminal";
 
 import config from "../configs/configs.js";
 
+import { reconnect } from "./reconnect.js";
+
 export const registerConnection = (app) => {
-  app.sock.ev.on("connection.update", (update) => {
+  app.sock.ev.on("connection.update", async (update) => {
     const { connection, lastDisconnect, qr } = update;
 
-    if (qr) return qrcode.generate(qr, { small: true });
+    if (qr && config.login.method === "qr") {
+      qrcode.generate(qr, { small: true });
+    }
 
     switch (connection) {
       case "open": {
@@ -19,22 +23,15 @@ export const registerConnection = (app) => {
       case "close": {
         const statusCode = new Boom(lastDisconnect?.error).output?.statusCode;
         const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
-        console.log(
-          `Evora log - Connection timeout, reason: ${statusCode}, reconnecting...`,
-        );
+        console.log(`Evora log - Connection closed, reason: ${statusCode}`);
         if (shouldReconnect) {
           if (app.restarting) return;
 
-          console.log(
-            `Evora log - Reconnecting in ${config.reconnect.delay}ms`,
-          );
-          setTimeout(async () => {
-            try {
-              await app.restart();
-            } finally {
-              app.restarting = false;
-            }
-          }, config.reconnect.delay);
+          try {
+            await reconnect(app);
+          } finally {
+            app.restarting = false;
+          }
         } else {
           console.log(
             "Evora log - Logged out, hapus folder session dan restart",

@@ -21,6 +21,6 @@ export default {
     delay: 3000,
   },
   login: {
-    usePairingCode: true,
+    method: "pairing",
   },
 };
