@@ -1,4 +1,4 @@
-import Evora from "./src/evora.js";
+import Evora from "./src/app.js";
 
 const app = new Evora();
 
