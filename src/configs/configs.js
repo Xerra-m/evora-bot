@@ -15,7 +15,7 @@ export default {
   },
   socket: {
     browser: ["Ubuntu", "Chrome", "20.0.04"],
-    loggerLevel: "debug",
+    loggerLevel: "silent",
   },
   reconnect: {
     delay: 3000,

@@ -1,7 +1,12 @@
+// dependencies
 import { createInterface } from "readline/promises";
 import { stdin as input, stdout as output } from "process";
 
+// import config
 import config from "../configs/configs.js";
+
+// import logger
+import { logger } from "../lib/logger.js";
 
 export const login = async (app) => {
   if (app.authState.creds.registered) return;
@@ -11,8 +16,9 @@ export const login = async (app) => {
       input,
       output,
     });
-    console.log(
-      "Evora log - Bot belum terdaftar. Silahkan Masukkan nomor whatsapp.",
+    logger.warn(
+      "Login",
+      "Bot belum terdaftar. Silahkan Masukkan nomor whatsapp.",
     );
 
     let phoneNumber = await rl.question(
@@ -24,9 +30,9 @@ export const login = async (app) => {
 
     try {
       const code = await app.sock.requestPairingCode(phoneNumber);
-      console.log(`Evora log - Pairing code: ${code}`);
+      logger.info("Login", `Pairing code: ${code}`);
     } catch (err) {
-      console.error(`Evora log - Gagal meminta pairing code, ${err}`);
+      logger.error("Login", `Gagal meminta pairing code, ${err}`);
     }
   }
 };
