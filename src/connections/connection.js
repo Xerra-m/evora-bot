@@ -23,13 +23,18 @@ export const registerConnection = (app) => {
     switch (connection) {
       case "open": {
         logger.info("Socket", "Bot connected!");
+        logger.info("App", "Evora is ready🚀");
         break;
       }
 
       case "close": {
+        app.restarting = true;
+
         const statusCode = new Boom(lastDisconnect?.error).output?.statusCode;
         const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
+
         logger.error("Connection", `Connection closed, reason: ${statusCode}`);
+
         if (shouldReconnect) {
           if (app.restarting) return;
 
