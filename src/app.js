@@ -10,6 +10,9 @@ import { login } from "./connections/login.js";
 import { logger } from "./lib/logger.js";
 import { loadCommands } from "./lib/loader.js";
 
+// import handler
+import { registerMessageHandler } from "./handlers/message.js";
+
 // import config
 import config from "./configs/configs.js";
 
@@ -48,6 +51,9 @@ class Evora {
 
     // load command
     await loadCommands(this);
+
+    // message handler
+    registerMessageHandler(this);
   }
 
   async restart() {
