@@ -1,3 +1,5 @@
+// src/lib/logger.js
+
 const colors = {
   reset: "\x1b[0m",
   gray: "\x1b[90m",

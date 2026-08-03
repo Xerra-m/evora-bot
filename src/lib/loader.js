@@ -1,3 +1,5 @@
+// src/lib/loader.js
+
 // dependencies
 import { readdir } from "fs/promises";
 import path from "path";

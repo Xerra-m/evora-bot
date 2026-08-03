@@ -1,3 +1,5 @@
+// src/app.js
+
 // dependencies
 import { useMultiFileAuthState } from "@whiskeysockets/baileys";
 

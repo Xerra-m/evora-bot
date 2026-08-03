@@ -1,3 +1,6 @@
+// src/handlers/message.js
+
+// import library
 import { logger } from "../lib/logger.js";
 
 export const registerMessageHandler = (app) => {
