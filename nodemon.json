@@ -1,3 +1,6 @@
 {
-  "ignore": ["session/**", "node_modules/**"]
+  "watch": ["src/**"],
+  "ext": "js,json",
+  "ignore": ["session/**", "node_modules/**"],
+  "exec": "node index.js"
 }
