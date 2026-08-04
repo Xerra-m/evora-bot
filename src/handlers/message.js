@@ -3,6 +3,9 @@
 // import library
 import { logger } from "../lib/logger.js";
 
+// import handler
+import { handleCommands } from "./command.js";
+
 export const registerMessageHandler = (app) => {
   app.sock.ev.on("messages.upsert", async ({ messages }) => {
     try {
@@ -16,6 +19,8 @@ export const registerMessageHandler = (app) => {
 
       const body =
         m.message?.conversation || m.message?.extendedTextMessage?.text || "";
+
+      await handleCommands(app, m);
 
       logger.debug(
         "Message",

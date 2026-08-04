@@ -26,6 +26,7 @@ class Evora {
     this.restarting = false;
 
     this.commands = new Map();
+    this.categories = new Map();
   }
 
   async start() {

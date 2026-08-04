@@ -6,6 +6,9 @@ import config from "../configs/configs.js";
 // import library
 import { logger } from "../lib/logger.js";
 
+// import context
+import { createContext } from "../context/createContext.js";
+
 export const handleCommands = async (app, m) => {
   const body =
     m.message?.conversation || m.message?.extendedTextMessage?.text || "";
@@ -18,6 +21,8 @@ export const handleCommands = async (app, m) => {
 
   const prefix = prefixes.find((p) => body.startsWith(p));
 
+  if (!prefix) return;
+
   const args = body.slice(prefix.length).trim().split(/\s+/);
 
   let commandName = args.shift();
@@ -25,7 +30,7 @@ export const handleCommands = async (app, m) => {
   if (!commandName) return;
 
   if (!config.command.caseSensitive) {
-    commandName.toLowerCase();
+    commandName = commandName.toLowerCase();
   }
 
   const command = app.commands.get(commandName);
@@ -35,29 +40,12 @@ export const handleCommands = async (app, m) => {
     return;
   }
 
-  const ctx = {
-    app,
-    sock: app.sock,
-
-    m,
+  const ctx = createContext(app, m, {
     body,
-
     prefix,
     command: commandName,
     args,
-
-    chat: m.key.remoteJid,
-    sender: m.key.participant || m.key.remoteJid,
-
-    isGroup: m.key.remoteJid.endsWith("@g.us"),
-    fromMe: m.key.fromMe,
-    reply: async (text, options = {}) => {
-      return app.sock.sendMessage(m.key.remoteJid, {
-        text,
-        ...options,
-      });
-    },
-  };
+  });
 
   try {
     await command.execute(ctx);

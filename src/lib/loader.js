@@ -38,12 +38,19 @@ export const loadCommands = async (app) => {
   const commandFiles = await scanDirectory(commandsPath);
 
   let loaded = 0;
+  const categories = new Map();
 
   for (const file of commandFiles) {
     try {
       const { default: command } = await import(pathToFileURL(file).href);
 
-      if (!command?.name || typeof command.execute !== "function") {
+      const category = path.basename(path.dirname(file));
+
+      if (
+        !command?.name ||
+        !command?.description ||
+        typeof command.execute !== "function"
+      ) {
         logger.warn(
           "Loader",
           `${path.basename(file)} bukan command yang valid.`,
@@ -51,13 +58,21 @@ export const loadCommands = async (app) => {
         continue;
       }
 
-      app.commands.set(command.name, command);
+      const commandData = { ...command, category };
+
+      app.commands.set(commandData.name, commandData);
 
       if (Array.isArray(command.aliases)) {
         for (const alias of command.aliases) {
           app.commands.set(alias, command);
         }
       }
+
+      if (!app.categories.has(category)) {
+        app.categories.set(category, []);
+      }
+
+      app.categories.get(category).push(commandData);
 
       loaded++;
     } catch (err) {
@@ -69,4 +84,8 @@ export const loadCommands = async (app) => {
   }
 
   logger.info("Loader", `Loaded ${loaded} commands`);
+
+  for (const [category, command] of app.categories) {
+    logger.info("Command", `Loaded ${category}: ${command.length}`);
+  }
 };

@@ -1,7 +1,7 @@
 // src/createContext.js
 
 // import helper
-import { attachContextHelpers } from "./helpers.js";
+import { attachHelpers } from "./helpers.js";
 
 export const createContext = (app, m, { body, prefix, command, args }) => {
   const ctx = {
@@ -22,5 +22,5 @@ export const createContext = (app, m, { body, prefix, command, args }) => {
     fromMe: m.key.fromMe,
   };
 
-  return attachContextHelpers(ctx);
+  return attachHelpers(ctx);
 };

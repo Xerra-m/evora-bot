@@ -1,12 +1,18 @@
 // src/context/helpers.js
 
-export const attachContextHelpers = (ctx) => {
+export const attachHelpers = (ctx) => {
   // reply
   ctx.reply = async (text, options = {}) => {
-    return ctx.sock.sendMessage(ctx.chat, {
-      text,
-      ...options,
-    });
+    return ctx.sock.sendMessage(
+      ctx.chat,
+      {
+        text,
+        ...options,
+      },
+      {
+        quoted: ctx.m,
+      },
+    );
   };
 
   // react
