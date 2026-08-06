@@ -1,6 +1,6 @@
 {
   "name": "evora-bot",
-  "version": "1.0.0",
+  "version": "1.0.0 pre releast",
   "description": "A modular WhatsApp bot build with node.js & baileys",
   "main": "index.js",
   "scripts": {

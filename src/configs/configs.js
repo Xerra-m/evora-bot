@@ -1,30 +1,46 @@
+// src/configs/configs.js
+
 // dependencies
 import dotenv from "dotenv";
 
 dotenv.config();
 
+// import package.json
+import pkg from "../../package.json" with { type: "json" };
+
 export default {
   app: {
-    name: "Evora",
-    version: "1.0.0",
-    author: "Xerra Magani & Minzy",
-    description: "A modular WhatsApp bot built with Node.js & Baileys",
+    name: pkg.name,
+    version: pkg.version,
+    author: pkg.author,
+    description: pkg.description,
   },
+
+  socket: {
+    browser: ["Ubuntu", "Chrome", "20.0.04"],
+    loggerLevel: "silent",
+  },
+
+  session: {
+    path: "./session",
+  },
+
+  login: {
+    method: "pairing",
+  },
+
+  reconnect: {
+    delay: 3000,
+  },
+
   command: {
     prefix: [".", ",", ";", "!", "@", "$", "&", "e!"],
     caseSensitive: false,
   },
-  login: {
-    method: "pairing",
-  },
-  reconnect: {
-    delay: 3000,
-  },
-  session: {
-    path: "./session",
-  },
-  socket: {
-    browser: ["Ubuntu", "Chrome", "20.0.04"],
-    loggerLevel: "silent",
+
+  owner: {
+    numbers: process.env.OWNER_NUMBERS
+      ? process.env.OWNER_NUMBERS.split(",")
+      : [],
   },
 };
