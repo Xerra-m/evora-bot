@@ -5,6 +5,7 @@ import { Permissions } from "./constants.js";
 
 // import permission checker
 import { isOwner } from "./owner.js";
+import { isAdmin } from "./admin.js";
 
 export const checkPermission = async (ctx, permission) => {
   switch (permission) {
@@ -13,11 +14,11 @@ export const checkPermission = async (ctx, permission) => {
     }
 
     case Permissions.OWNER: {
-      return isOwner(ctx.sender);
+      return isOwner(ctx);
     }
 
     case Permissions.ADMIN: {
-      return false;
+      return isAdmin(ctx);
     }
 
     case Permissions.PREMIUM: {
